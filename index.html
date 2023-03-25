@@ -1,8 +1,23 @@
 <script>
 fetch('https://artim-industries000011.loca.lt/', {mode: 'no-cors'}).then(r=>{
-  window.location.href = 'https://artim-industries000011.loca.lt';
+  if (UrlExists("https://artim-industries000011.loca.lt")) {
+    window.location.href = 'https://artim-industries000011.loca.lt';
+  } else {
+    window.location.href = 'error.html';
+  }
+  
   })
   .catch(e=>{
     window.location.href = 'error.html';
     });
+
+    function UrlExists(url) {
+        var http = new XMLHttpRequest();
+        http.open('HEAD', url, false);
+        http.send();
+        if (http.status != 404)
+            return true;
+        else
+            return false;
+    }
 </script>
