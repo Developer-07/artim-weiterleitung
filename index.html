@@ -1,3 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reminder</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #00ffea;
+        }
+
+        .img {
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body align="center">
+    <h1>Die nachfolgende Seite wird so aussehen:</h1>
+    <img src="next_site.png" class="img" width="1200" height="500">
+    <h1>Sie werden aufgefordert ein Passwort einzugeben. Dies ist das Passwort:</h1>
+    <h1>94.31.84.95</h1>
+    <button class="btn btn-info" onclick="conti();">Weiter -></button>
+</body>
+</html>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js" integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 function loadFile(filePath) {
@@ -11,7 +37,10 @@ function loadFile(filePath) {
   return result;
 }
 
-url = loadFile('url.txt');
+  
+function conti() {
+  
+  url = loadFile('url.txt');
  
  
 fetch(url, {mode: 'no-cors'}).then(r=>{
@@ -33,4 +62,9 @@ fetch(url, {mode: 'no-cors'}).then(r=>{
         else
             return false;
     }
+  
+}
+  
+
+
 </script>
