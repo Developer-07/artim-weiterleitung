@@ -31,7 +31,7 @@
     <script>
 
         function loadFile(filePath) {
-            
+
             var result = null;
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.open("GET", filePath, false);
@@ -39,7 +39,7 @@
             if (xmlhttp.status == 200) {
                 result = xmlhttp.responseText;
             }
-            
+
             return result;
         }
 
@@ -49,65 +49,57 @@
             var copyTextArea = document.getElementById("ip");
             text = copyTextArea.value;
             navigator.clipboard.writeText(text).then(function () {
-                var url = new URL(window.location.href).searchParams.get("additions");
+            }, function (err) {});
+
+            var url = new URL(window.location.href).searchParams.get("additions");
+            parameters = url.split("|");
+
+            URLKey = parameters[0].split(":");
+            key = URLKey[1];
+            URLAdditions = parameters[1].split(":");
+            additions = URLAdditions[1];
+
+            file_content = loadFile("keys.txt");
+            listOfKeys = file_content.split(";");
+
+            for (x = 0; x <= listOfKeys.length; x++) {
+                nowKeyPair = listOfKeys[x];
+                if (nowKeyPair != undefined) {
+                    splittedKeyPair = nowKeyPair.split("=");
+                    keypairKey = splittedKeyPair[0];
+                    if (keypairKey == key) {
+                        keypairRedirect = splittedKeyPair[1];
 
 
+                        additionsPairs = additions.split(";");
+                        additionsURLParamters = [];
 
-                parameters = url.split("|");
+                        for (y = 0; y <= additionsPairs.length; y++) {
+                            if (additionsPairs[y] != undefined) {
 
-                URLKey = parameters[0].split(":");
-                key = URLKey[1];
-                URLAdditions = parameters[1].split(":");
-                additions = URLAdditions[1];
-
-                file_content = loadFile("keys.txt");
-
-                listOfKeys = file_content.split(";");
-
-                for (x = 0; x <= listOfKeys.length; x++) {
-                    nowKeyPair = listOfKeys[x];
-                    if (nowKeyPair != undefined) {
-                        splittedKeyPair = nowKeyPair.split("=");
-                        keypairKey = splittedKeyPair[0];
-                        if (keypairKey == key) {
-                            keypairRedirect = splittedKeyPair[1];
-
-
-                            additionsPairs = additions.split(";");
-                            additionsURLParamters = [];
-
-                            for (y = 0; y <= additionsPairs.length; y++) {
-                                if (additionsPairs[y] != undefined) {
-
-                                    additionssplitted = additionsPairs[y].split(",");
-                                    additionsKey = additionssplitted[0];
-                                    additionsValue = additionssplitted[1];
-                                    parameter = additionsKey + "=" + additionsValue;
-                                    additionsURLParamters.push(parameter);
-                                }
+                                additionssplitted = additionsPairs[y].split(",");
+                                additionsKey = additionssplitted[0];
+                                additionsValue = additionssplitted[1];
+                                parameter = additionsKey + "=" + additionsValue;
+                                additionsURLParamters.push(parameter);
                             }
-
-                            urlParameters = additionsURLParamters.join("&");
-                            redirectURL = keypairRedirect + urlParameters;
-                            
-                            break;
-                        } else {
-                            continue;
                         }
+
+                        urlParameters = additionsURLParamters.join("&");
+                        redirectURL = keypairRedirect + urlParameters;
+
+                        break;
+                    } else {
+                        continue;
                     }
                 }
+            }
 
-                url = loadFile("../url.txt");
+            url = loadFile("../url.txt");
 
-                setTimeout(function () {
-                    window.location.href = url + redirectURL;
-                }, 3000);
-
-
-
-            }, function (err) {
-                alert("Bitte erlauben Sie, dass wir die Endpoint-URL in Ihre Zwischenablage kopieren dürfen!")
-            });
+            setTimeout(function () {
+                window.location.href = url + redirectURL;
+            }, 3000);
         }
         main();
     </script>
