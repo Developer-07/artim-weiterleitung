@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reminder</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #00ffea;
-        }
 
-        .img {
-            border-radius: 15px;
-        }
-    </style>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reminder</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #00ffea;
+    }
+
+    .img {
+      border-radius: 15px;
+    }
+  </style>
 </head>
+
 <body align="center">
-    <h1>Die nachfolgende Seite wird so aussehen:</h1>
-    <img src="next_site.png" class="img" width="1200" height="500">
-    <h1>Sie werden aufgefordert ein Passwort einzugeben. Dies ist das Passwort:</h1>
-    <h1 style="text-decoration: underline;"><i>94.31.84.95</i></h1>
-    <button class="btn btn-primary" onclick="conti();">Weiter -></button>
+  <h1>Die nachfolgende Seite wird so aussehen:</h1>
+  <img src="next_site.png" class="img" width="1200" height="500">
+  <h1>Sie werden aufgefordert ein Passwort einzugeben. Dies ist das Passwort:</h1>
+  <h1 style="text-decoration: underline;"><i>94.31.84.95</i></h1>
+  <button class="btn btn-primary" onclick="conti();">Weiter -></button>
 </body>
+
 </html>
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -30,45 +33,45 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script>
-function loadFile(filePath) {
-  var result = null;
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.open("GET", filePath, false);
-  xmlhttp.send();
-  if (xmlhttp.status==200) {
-    result = xmlhttp.responseText;
+  function loadFile(filePath) {
+    var result = null;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", filePath, false);
+    xmlhttp.send();
+    if (xmlhttp.status == 200) {
+      result = xmlhttp.responseText;
+    }
+    return result;
   }
-  return result;
-}
 
-  
-function conti() {
-  
-  url = loadFile('url.txt');
- 
- 
-fetch(url, {mode: 'no-cors'}).then(r=>{
- 
-    window.location.href = url;
 
-  
-  })
-  .catch(e=>{
-    window.location.href = 'error.html';
-    });
+  function conti() {
+
+    url = loadFile('url.txt');
+
+
+    fetch(url, { mode: 'no-cors' }).then(r => {
+
+      window.location.href = url;
+
+
+    })
+      .catch(e => {
+        window.location.href = 'error.html';
+      });
 
     function UrlExists(url) {
-        var http = new XMLHttpRequest();
-        http.open('HEAD', url, false);
-        http.send();
-        if (http.status != 404)
-            return true;
-        else
-            return false;
+      var http = new XMLHttpRequest();
+      http.open('HEAD', url, false);
+      http.send();
+      if (http.status != 404)
+        return true;
+      else
+        return false;
     }
-  
-}
-  
+
+  }
+
 
 
 </script>
