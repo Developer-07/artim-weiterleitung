@@ -1,3 +1,51 @@
 <head>
-  <meta http-equiv="Refresh" content="0; url=https://artim-industries000011.loca.lt/academy/" />
 </head>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+  function loadFile(filePath) {
+    var result = null;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", filePath, false);
+    xmlhttp.send();
+    if (xmlhttp.status == 200) {
+      result = xmlhttp.responseText;
+    }
+    return result;
+  }
+
+
+  function conti() {
+
+    url = loadFile('../url.txt');
+
+
+    fetch(url, { mode: 'no-cors' }).then(r => {
+
+      window.location.href = url + "/academy/;
+
+
+    })
+      .catch(e => {
+        window.location.href = 'error.html';
+      });
+
+    function UrlExists(url) {
+      var http = new XMLHttpRequest();
+      http.open('HEAD', url, false);
+      http.send();
+      if (http.status != 404)
+        return true;
+      else
+        return false;
+    }
+
+  }
+
+
+
+</script>
