@@ -23,8 +23,7 @@
         <h2 style="text-decoration: underline;">Eine Sache noch...</h2>
         <h3>Die nachfolgende Seite wird so aussehen:</h3>
         <img src="../next_site.png" width="700" height="300">
-        <h3>Die Endpoint-URL lautet: <i style="color:#ff0000">94.31.84.95</i></h3>
-        <span style="font-size:14px;">Sie wurde in Ihre Zwischenablage kopiert!</span>
+        <p><b>Sie müssen einfach nur auf ,,Visit Site'' klicken!</b></p>
         <input style="display:none" value="94.31.84.95" id="ip" autofocus>
     </div>
 
@@ -46,11 +45,6 @@
         redirectURL = "";
 
         function main() {
-            var copyTextArea = document.getElementById("ip");
-            text = copyTextArea.value;
-            navigator.clipboard.writeText(text).then(function () {
-            }, function (err) {});
-
             var url = new URL(window.location.href).searchParams.get("additions");
             parameters = url.split("|");
 
