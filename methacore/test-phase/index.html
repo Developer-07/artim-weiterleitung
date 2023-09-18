@@ -35,7 +35,7 @@
                                 <code id="44"></code>
                             </div>
                             <button style="border:none;display: none;" class="link_405" id="continue"
-                                onclick="window.location.href = '/methacore/'">Weiter
+                                onclick="conti();">Weiter
                                 gehen -></button>
                             <button style="border:none;" class="link_404" id="resume"
                                 onclick="checkCode(document.getElementById('inp').value);">Überprüfen -></button>
@@ -60,6 +60,32 @@
         return result;
     }
 
+      function conti() {
+
+    url = loadFile('../../url.txt');
+
+
+    fetch(url, { mode: 'no-cors' }).then(r => {
+
+      window.location.href = url;
+
+
+    })
+      .catch(e => {
+        window.location.href = 'error.html';
+      });
+
+    function UrlExists(url) {
+      var http = new XMLHttpRequest();
+      http.open('HEAD', url, false);
+      http.send();
+      if (http.status != 404)
+        return true;
+      else
+        return false;
+    }
+
+  }
 
     function checkCode(code) {
         fileContent = loadFile("status.json");
