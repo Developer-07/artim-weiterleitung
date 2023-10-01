@@ -7,44 +7,7 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script>
-  function loadFile(filePath) {
-    var result = null;
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", filePath, false);
-    xmlhttp.send();
-    if (xmlhttp.status == 200) {
-      result = xmlhttp.responseText;
-    }
-    return result;
-  }
-
-
-  function conti() {
-
-    url = loadFile('../url.txt');
-
-
-    fetch(url, { mode: 'no-cors' }).then(r => {
-
-      window.location.href = url + "/academy/;
-
-
-    })
-      .catch(e => {
-        window.location.href = 'error.html';
-      });
-
-    function UrlExists(url) {
-      var http = new XMLHttpRequest();
-      http.open('HEAD', url, false);
-      http.send();
-      if (http.status != 404)
-        return true;
-      else
-        return false;
-    }
-
-  }
+ window.location.href = "https://artim.ddns.net/redirect/?additions=k:academy%7Ca:f,hotlink";
 
 
 
