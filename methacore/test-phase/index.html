@@ -35,6 +35,7 @@
                             <div style="display: block;">
                                 <code id="44"></code>
                             </div>
+                            <input style="display:none" id="org">
                             <button style="border:none;display: none;" class="link_405" id="continue"
                                 onclick="conti();">Weiter
                                 gehen -></button>
@@ -61,32 +62,36 @@
         return result;
     }
 
-      function conti() {
+    function conti(org) {
 
-    url = loadFile('../../url.txt');
-
-
-    fetch(url, { mode: 'no-cors' }).then(r => {
-
-      window.location.href = url + "/methacore/";
+        code = document.getElementById("inp").value;
+        org = document.getElementById("org").value;
 
 
-    })
-      .catch(e => {
-        window.location.href = 'error.html';
-      });
+        url = loadFile('../../url.txt');
 
-    function UrlExists(url) {
-      var http = new XMLHttpRequest();
-      http.open('HEAD', url, false);
-      http.send();
-      if (http.status != 404)
-        return true;
-      else
-        return false;
+
+        fetch(url, { mode: 'no-cors' }).then(r => {
+
+            window.location.href = url + "/methacore/test-phase/start?org=" + org + "&phaseCode=" + code;
+
+
+        })
+            .catch(e => {
+                window.location.href = 'error.html';
+            });
+
+        function UrlExists(url) {
+            var http = new XMLHttpRequest();
+            http.open('HEAD', url, false);
+            http.send();
+            if (http.status != 404)
+                return true;
+            else
+                return false;
+        }
+
     }
-
-  }
 
     function checkCode(code) {
         fileContent = loadFile("status.json");
@@ -101,6 +106,7 @@
                 document.getElementById("44").innerHTML = "Dieser Code gehört zur " + organisation + " Organisation."
                 console.log("Continue");
                 document.getElementById("resume").style.display = "none";
+                document.getElementById("org").value = organisation;
                 document.getElementById("continue").style.display = "inline-block";
             } else {
                 document.getElementById("44").innerHTML = "Die Test-Phase für die " + organisation + " Organisation ist noch nicht eröffnet."
