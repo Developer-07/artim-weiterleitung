@@ -2,5 +2,9 @@
     "XCt334": {
         "organisation": "KSV",
         "status": false
+    },
+    "KLa995": {
+        "organisation": "KSV",
+        "status": true
     }
 }
